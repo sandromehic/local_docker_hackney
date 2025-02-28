@@ -1,7 +1,7 @@
 services:
   one:
     build: .
-    command: sh -c 'mix deps.get && mix phx.server'
+    command: sh -c 'cd one && mix deps.get && mix phx.server'
     environment:
       OTHER_SERVICE: two
     volumes:
@@ -10,7 +10,7 @@ services:
       - 4000:4000
   two:
     build: .
-    command: sh -c 'mix deps.get && mix phx.server'
+    command: sh -c 'cd two && mix deps.get && mix phx.server'
     environment:
       OTHER_SERVICE: one
       PORT: 5000
