@@ -1,18 +1,17 @@
 # LocalDockerHackney
 
-To start your Phoenix server:
+This projects tries to replicate hackney 1.22+ not working within docker network
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+In order to replicate you can:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```
+host$ docker compose up -d
+host$ docker compose exec two sh
+two$ curl http://one:4000/api
+OK
+two$ PORT=5001 iex -S mix 
+iex> :hackney.get("http://one:4000/api")
+{:error, :nxdomain}
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+When hackney 1.22+ is checked out, the call with `:hackney` fails, and if version <= 1.21 is checked out, the call is successful.
