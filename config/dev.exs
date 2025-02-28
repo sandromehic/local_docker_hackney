@@ -7,14 +7,17 @@ import Config
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
 # Binding to loopback ipv4 address prevents access from other machines.
+
 port = String.to_integer(System.get_env("PORT") || "4000")
+
 config :local_docker_hackney, LocalDockerHackneyWeb.Endpoint,
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: port],
+  http: [ip: {0, 0, 0, 0}, port: port],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "c2s+I+gcADalrAfvnnE7uS0UpXkcV3jUFeNaxB+mdBzYcuNO18nCTwgkGjXNjf51",
+  server: true,
   watchers: []
 
 # ## SSL Support
