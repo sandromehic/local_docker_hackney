@@ -1,0 +1,15 @@
+services:
+  one:
+    build: .
+    command: sh -c 'mix deps.get && mix phx.server'
+    environment:
+      OTHER_SERVICE: two
+    volumes:
+      - .:/usr/src/app:rw
+  two:
+    build: .
+    command: sh -c 'mix deps.get && mix phx.server'
+    environment:
+      OTHER_SERVICE: one
+    volumes:
+      - .:/usr/src/app:rw
