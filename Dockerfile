@@ -1,7 +1,7 @@
 FROM elixir:1.15.4-otp-25-alpine
 
 WORKDIR /usr/src/app
-RUN apk add curl
+RUN apk add curl bash
 ADD . /usr/src/app
 RUN cd /usr/src/app/one && mix do deps.get, deps.compile, compile
 RUN cd /usr/src/app/two && mix do deps.get, deps.compile, compile
