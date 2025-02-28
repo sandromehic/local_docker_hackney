@@ -7,6 +7,8 @@ defmodule LocalDockerHackneyWeb.Router do
 
   scope "/api", LocalDockerHackneyWeb do
     pipe_through :api
+
+    get "/", TestController, :index
   end
 
   # Enable Swoosh mailbox preview in development
